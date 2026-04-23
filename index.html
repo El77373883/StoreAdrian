@@ -2,281 +2,308 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrianhats & Fragrances</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ADRIANHATS | Official Store</title>
     <style>
-        /* Variables de color para un diseño premium */
         :root {
-            --primary: #111111;
-            --secondary: #1a1a1a;
-            --accent: #d4af37; /* Dorado */
-            --text-light: #f4f4f4;
-            --text-muted: #aaaaaa;
+            --bg-color: #fbfbfd;
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --card-bg: #ffffff;
+            --accent: #000000;
+            --border-color: #d2d2d7;
+            --nav-bg: rgba(251, 251, 253, 0.8);
         }
 
-        /* Reseteo básico y tipografía */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --text-main: #f5f5f7;
+                --text-secondary: #a1a1a6;
+                --card-bg: #1c1c1e;
+                --accent: #ffffff;
+                --border-color: #424245;
+                --nav-bg: rgba(0, 0, 0, 0.8);
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--primary);
-            color: var(--text-light);
-            scroll-behavior: smooth;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
         }
 
-        /* Navegación */
-        header {
+        /* Glassmorphism Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background: var(--nav-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: var(--primary);
-            border-bottom: 1px solid #333;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            padding: 0 5%;
+            z-index: 9999;
         }
 
-        .logo {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--accent);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        nav a {
-            color: var(--text-light);
+        .brand-logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
             text-decoration: none;
-            margin-left: 30px;
-            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--accent);
+        .nav-links {
+            display: flex;
+            gap: 24px;
         }
 
-        /* Sección Hero (Principal) */
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Hero Section (Cinematic) */
         .hero {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523293115678-efa230ea429e?w=1600') center/cover;
             padding: 0 20px;
+            background: var(--bg-color);
+            margin-top: 30px;
         }
 
         .hero h1 {
-            font-size: 50px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 10px;
         }
 
         .hero p {
-            font-size: 18px;
-            color: var(--text-muted);
-            margin-bottom: 40px;
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            font-weight: 400;
             max-width: 600px;
+            margin-bottom: 30px;
         }
 
-        .btn {
-            background: var(--accent);
-            color: #000;
-            padding: 15px 40px;
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--bg-color);
+            padding: 12px 24px;
+            border-radius: 980px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            transition: transform 0.3s ease, background 0.3s ease;
-            border: none;
-            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .btn:hover {
-            background: #fff;
-            transform: scale(1.05);
+        .btn-primary:active {
+            transform: scale(0.95);
         }
 
-        /* Contenedor de Productos */
-        .container {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 5%;
+        /* Store Section */
+        .store-section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .section-title {
-            text-align: center;
+        .section-header {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
             margin-bottom: 50px;
-            font-size: 36px;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            text-align: center;
+            letter-spacing: -0.5px;
         }
 
-        .section-title span {
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .grid {
+        /* Grid System for iPhone & PC */
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
-        /* Tarjetas de Producto */
-        .card {
-            background: var(--secondary);
-            border: 1px solid #333;
-            border-radius: 8px;
+        /* Clean Product Cards */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 18px;
             overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
+        .product-card:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
 
-        .card-img-placeholder {
+        .product-image {
             width: 100%;
-            height: 300px;
-            background: #222;
+            aspect-ratio: 1 / 1;
+            background-color: var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #555;
-            font-style: italic;
-        }
-
-        .card-content {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--text-light);
-        }
-
-        .card p {
+            color: var(--text-secondary);
             font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 15px;
+        }
+
+        .product-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
         }
 
         .price {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
         }
 
-        .btn-cart {
-            width: 100%;
-            display: block;
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
+        .btn-buy {
+            background: var(--text-main);
+            color: var(--bg-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 980px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .btn-cart:hover {
-            background: var(--accent);
-            color: #000;
-        }
-
-        /* Pie de página */
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: var(--secondary);
-            border-top: 1px solid #333;
-            color: var(--text-muted);
-            font-size: 14px;
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* In a real app, this would be a hamburger menu */
+            }
+            .store-section {
+                padding: 60px 20px;
+            }
+            .product-grid {
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Adrianhats</div>
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#gorras">Gorras</a>
-            <a href="#perfumes">Perfumes</a>
-        </nav>
-    </header>
+    <nav>
+        <a href="#" class="brand-logo">Adrianhats</a>
+        <div class="nav-links">
+            <a href="#gorras">Headwear</a>
+            <a href="#fragancias">Fragrances</a>
+        </div>
+    </nav>
 
-    <section class="hero" id="inicio">
-        <h1>Eleva tu estilo. Marca tu aura.</h1>
-        <p>Descubre nuestra colección exclusiva de gorras de diseño y fragancias con proyección extrema.</p>
-        <a href="#gorras" class="btn">Ver Catálogo</a>
+    <section class="hero">
+        <h1>Diseño y Estela.</h1>
+        <p>Materiales premium. Proyección beast mode. Creado para destacar.</p>
+        <a href="#gorras" class="btn-primary">Explorar Colección</a>
     </section>
 
-    <div class="container" id="gorras">
-        <h2 class="section-title">Colección <span>Gorras</span></h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-img-placeholder">[Imagen: Gorra Strass]</div>
-                <div class="card-content">
-                    <h3>Premium Heavy Cotton</h3>
-                    <p>Algodón pesado de máxima calidad, bordado 3D estructurado y detalles exclusivos en strass.</p>
-                    <div class="price">$850 MXN</div>
-                    <button class="btn btn-cart">Añadir al carrito</button>
+    <section class="store-section" id="gorras">
+        <h2 class="section-header">Headwear</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">Foto de gorra Heavy Cotton</div>
+                <div class="product-info">
+                    <h3 class="product-title">Classic Heavy Cotton</h3>
+                    <p class="product-desc">Algodón de alto gramaje con bordado 3D frontal. Detalles en strass meticulosamente colocados a mano.</p>
+                    <div class="product-footer">
+                        <span class="price">$850</span>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-img-placeholder">[Imagen: Gorra Paisley]</div>
-                <div class="card-content">
-                    <h3>Edición Paisley</h3>
-                    <p>Diseño exclusivo con patrón paisley en la visera, ajuste perfecto y materiales premium.</p>
-                    <div class="price">$790 MXN</div>
-                    <button class="btn btn-cart">Añadir al carrito</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container" id="perfumes">
-        <h2 class="section-title">Perfumes <span>Beast Mode</span></h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-img-placeholder">[Imagen: Perfume 1]</div>
-                <div class="card-content">
-                    <h3>Inspiración L'Immensité</h3>
-                    <p>Frescura elegante con un toque de jengibre y ámbar. Estela inconfundible y larga duración.</p>
-                    <div class="price">$1,200 MXN</div>
-                    <button class="btn btn-cart">Añadir al carrito</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img-placeholder">[Imagen: Perfume 2]</div>
-                <div class="card-content">
-                    <h3>Elixir Absolute</h3>
-                    <p>Proyección nuclear. Dulce, especiado y diseñado para dejar huella en cualquier lugar.</p>
-                    <div class="price">$1,450 MXN</div>
-                    <button class="btn btn-cart">Añadir al carrito</button>
+            <div class="product-card">
+                <div class="product-image">Foto de gorra Paisley</div>
+                <div class="product-info">
+                    <h3 class="product-title">Paisley Edition</h3>
+                    <p class="product-desc">Estructura firme con diseño exclusivo bajo la visera. El ajuste perfecto que estabas buscando.</p>
+                    <div class="product-footer">
+                        <span class="price">$790</span>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 Adrianhats & Fragrances. Todos los derechos reservados.</p>
-    </footer>
+    <section class="store-section" id="fragancias">
+        <h2 class="section-header">Fragrances</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">Foto de inspiración L'Immensité</div>
+                <div class="product-info">
+                    <h3 class="product-title">Aura Infinita</h3>
+                    <p class="product-desc">Inspiración L'Immensité. Cítricos vibrantes, jengibre y una estela elegante que proyecta por horas.</p>
+                    <div class="product-footer">
+                        <span class="price">$1,200</span>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Foto de inspiración Elixir/Erba Pura</div>
+                <div class="product-info">
+                    <h3 class="product-title">Elixir Beast Mode</h3>
+                    <p class="product-desc">Potencia absoluta. Una mezcla densa y magnética con duración nuclear en piel y ropa.</p>
+                    <div class="product-footer">
+                        <span class="price">$1,450</span>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
